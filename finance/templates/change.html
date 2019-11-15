@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change
+{% endblock %}
+
+{% block main %}
+    <form action="/change" method="post">
+      <div class="form-group">
+        <select class="form-control" name="select" required>
+          <option disabled selected value>choose</option>
+            <option value="username">Username</option>
+            <option value="password">Password</option>
+        </select>
+      </div>
+    <button class="btn btn-primary" type="submit">Change</button>
+    </form>
+
+{% endblock %}
