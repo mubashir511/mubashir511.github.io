@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form id="myForm" action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Password (again)" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+    <script>
+        // call function when form 'submits'
+        $( "form" ).submit(function( event ) {
+          // Get username from form
+          var username = document.getElementById("myForm").elements[0].value;
+          // Stop the submission of form and send username to the /check for validation
+          $.get('/check?username=' + username, function(data) {
+            // Make desicion based on the data given by /check
+            if ( data === false ) {
+                alert("username is already taken");
+                document.getElementById("myForm").reset();
+              }
+            else{
+                document.getElementById("myForm").submit();
+            }
+          });
+          event.preventDefault();
+        });
+    </script>
+{% endblock %}

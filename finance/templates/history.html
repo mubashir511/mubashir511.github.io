@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Shares</th>
+          <th scope="col">Price</th>
+          <th scope="col">Transacted</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(search_len) %}
+        <tr>
+          <td>{{search_history[i]['symbol']}}</td>
+          <td>{{search_history[i]['shares']}}</td>
+          <td>${{'%0.2f' %search_history[i]['price']}}</td>
+          <td>{{search_history[i]['transacted']}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
